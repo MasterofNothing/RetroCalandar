@@ -42,7 +42,7 @@ public class CalandarMainProgram{
 
 		//frame
 		frmMain = new JFrame ("Calendar v28feb15"); //frame
-		frmMain.setSize(630, 425); //size
+		frmMain.setSize(630, 455); //size
 		pane = frmMain.getContentPane(); //get content pane
 		pane.setLayout(null); //null layout
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close app with X
@@ -81,12 +81,12 @@ public class CalandarMainProgram{
 		pnlCalendar.add(stblCalendar);
 		
 		//bounds
-		pnlCalendar.setBounds(25, 25, 320, 335);
-		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25);
-		lblYear.setBounds(10, 305, 80, 20);
-		cmbYear.setBounds(230, 305, 80, 20);
-		btnPrev.setBounds(10, 25, 50, 25);
-		btnNext.setBounds(260, 25, 50, 25);
+		pnlCalendar.setBounds(25, 25, 320, 365);
+//		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25); //does nothing
+//		lblYear.setBounds(10, 315, 80, 20);//hiding for now, not necessary
+		cmbYear.setBounds(230, 315, 80, 20);
+		btnPrev.setBounds(10, 15, 50, 25);
+		btnNext.setBounds(260, 15, 50, 25);
 		stblCalendar.setBounds(10, 50, 300, 250);
 		
 		//visibility and resize
