@@ -1,2 +1,2 @@
-# RetroCalandar
-Basic calandar
+# RetroCalendar
+Basic calendar
