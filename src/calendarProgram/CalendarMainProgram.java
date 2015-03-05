@@ -18,6 +18,18 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.border.Border;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
+import java.awt.Component;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
 //main with default table and scroll pane
 public class CalendarMainProgram{
@@ -31,7 +43,7 @@ public class CalendarMainProgram{
 	static JScrollPane stblCalendar;
 	static JPanel pnlCalendar, pnlInfoPane;
 	static int realYear, realMonth, realDay, currentYear, currentMonth;
-
+	
 	public static void main (String args[]){
 		//layout
 		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
@@ -59,8 +71,8 @@ public class CalendarMainProgram{
 			 */
 			private static final long serialVersionUID = 1L; //quick fix
 
-		@Override
-		public boolean isCellEditable(int rowIndex, int mColIndex){return false;}}; //edit date boxes off
+			@Override
+			public boolean isCellEditable(int rowIndex, int mColIndex){return false;}}; //edit date boxes off
 		tblCalendar = new JTable(mtblCalendar);
 		stblCalendar = new JScrollPane(tblCalendar);
 		pnlCalendar = new JPanel(null);
@@ -72,6 +84,10 @@ public class CalendarMainProgram{
 		btnPrev.addActionListener(new btnPrev_Action());
 		btnNext.addActionListener(new btnNext_Action());
 		cmbYear.addActionListener(new cmbYear_Action());
+		
+		//new mouse listener
+//		jTable1.addMouseListener(new java.awt.event.MouseAdapter());
+		
 		
 		//controls to pane
 		pane.add(pnlCalendar);
@@ -116,7 +132,7 @@ public class CalendarMainProgram{
 		tblCalendar.getTableHeader().setReorderingAllowed(true); //should probably set to false
 
 		//single cell selection
-		tblCalendar.setColumnSelectionAllowed(true);
+		tblCalendar.setColumnSelectionAllowed(false);
 		tblCalendar.setRowSelectionAllowed(true);
 		tblCalendar.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -181,17 +197,20 @@ public class CalendarMainProgram{
 			int row = new Integer((i+sum-2)/7);
 			int column  =  (i+sum-2)%7;
 			mtblCalendar.setValueAt(i, row, column);
+			//could add to this
 		}
 
 		//apply render
 		tblCalendar.setDefaultRenderer(tblCalendar.getColumnClass(0), new tblCalendarRenderer());
 	}
 
-	static class tblCalendarRenderer extends DefaultTableCellRenderer{
+	static class tblCalendarRenderer extends DefaultTableCellRenderer implements MouseListener{
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
+        Border blackBorder = BorderFactory.createLineBorder(Color.BLACK);
+        Border redBorder = BorderFactory.createLineBorder(Color.RED,5);
 
 		public Component getTableCellRendererComponent (JTable table, Object value, boolean selected, boolean focused, int row, int column){
 			super.getTableCellRendererComponent(table, value, selected, focused, row, column);
@@ -212,6 +231,36 @@ public class CalendarMainProgram{
 			setBorder(null);
 			setForeground(Color.black);
 			return this;  
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 	}
 
