@@ -29,12 +29,13 @@ public class CalandarMainProgram{
 	static Container pane;
 	static DefaultTableModel mtblCalendar;
 	static JScrollPane stblCalendar;
-	static JPanel pnlCalendar;
+	static JPanel pnlCalendar, pnlInfoPane;
 	static int realYear, realMonth, realDay, currentYear, currentMonth;
 
 	public static void main (String args[]){
 		//layout
 		try {UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());}
+		//exceptions empty
 		catch (ClassNotFoundException e) {}
 		catch (InstantiationException e) {}
 		catch (IllegalAccessException e) {}
@@ -58,6 +59,7 @@ public class CalandarMainProgram{
 			 */
 			private static final long serialVersionUID = 1L; //quick fix
 
+		@Override
 		public boolean isCellEditable(int rowIndex, int mColIndex){return false;}}; //edit date boxes off
 		tblCalendar = new JTable(mtblCalendar);
 		stblCalendar = new JScrollPane(tblCalendar);
@@ -130,6 +132,22 @@ public class CalandarMainProgram{
 		
 		//refresh calendar
 		refreshCalendar (realMonth, realYear);
+		
+		//infopane
+		
+		pnlInfoPane = new JPanel(null);
+
+		//border
+		pnlInfoPane.setBorder(BorderFactory.createTitledBorder("Info"));
+		
+		//controls to pane
+		pane.add(pnlInfoPane);
+		
+		//bounds
+		pnlInfoPane.setBounds(350, 25, 320, 365);
+//		lblMonth.setBounds(160-lblMonth.getPreferredSize().width/2, 25, 100, 25); //does nothing
+//		lblYear.setBounds(10, 315, 80, 20);//hiding for now, not necessary
+
 	}
 	
 	public static void refreshCalendar(int month, int year){
@@ -230,7 +248,8 @@ public class CalandarMainProgram{
 			}
 		}
 	}
-	public class SidePane extends CalandarSidePane {
+	//public class SidePane extends CalandarSidePane {
 		//stub for now
-	}
+	//doing it differently for now
 }
+	
